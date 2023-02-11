@@ -1,26 +1,23 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const credentials = require('./credentials.json');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
+  const options = Object.keys(credentials).map(key => {
+    return `
+      <option value="${key}">${key}</option>
+    `;
+  }).join('');
+
   res.send(`
     <form action="/audiobook-dl" method="post">
       <div>
-        <label for="username">Username:</label>
-        <select id="username" name="username">
-          <option value="user1">User 1</option>
-          <option value="user2">User 2</option>
-          <option value="user3">User 3</option>
-        </select>
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <select id="password" name="password">
-          <option value="pass1">Pass 1</option>
-          <option value="pass2">Pass 2</option>
-          <option value="pass3">Pass 3</option>
+        <label for="credentials">Credentials:</label>
+        <select id="credentials" name="credentials">
+          ${options}
         </select>
       </div>
       <div>
@@ -32,9 +29,8 @@ app.get('/', (req, res) => {
   `);
 });
 
-require('./audiobook-dl')(app);
+require('./audiobook-dl')(app, credentials);
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
 });
-``

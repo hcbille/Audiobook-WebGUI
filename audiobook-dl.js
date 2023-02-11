@@ -1,8 +1,9 @@
 const { exec } = require('child_process');
 
-module.exports = (app) => {
+module.exports = (app, credentials) => {
   app.post('/audiobook-dl', (req, res) => {
-    const { username, password, url } = req.body;
+    const { credentials: selectedCredentials, url } = req.body;
+    const { username, password } = credentials[selectedCredentials];
 
     // Validate URL
     if (!isValidURL(url)) {
