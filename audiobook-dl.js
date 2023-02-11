@@ -1,4 +1,5 @@
 const { exec } = require('child_process');
+const logger = require('./util/logging');
 
 module.exports = (app, credentials) => {
   app.post('/audiobook-dl', (req, res) => {
@@ -14,15 +15,16 @@ module.exports = (app, credentials) => {
     
     exec(command, (error, stdout, stderr) => {
       if (error) {
-        return res.send(`Error: ${error.message}`);
+        logger.info(`Error: ${error.message}`);
+        return res.send(`Error: error logged`);
       }
-
-      res.send(`Command executed: ${command}\n\n${stdout}`);
+      logger.info(`Command executed: ${command}\n\n${stdout}`);
+      res.send(`Command executed!`);
     });
   });
 };
 
 function isValidURL(url) {
-  // Add your URL validation logic here
-  return true;
+  const pattern = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
+  return pattern.test(url);
 }
