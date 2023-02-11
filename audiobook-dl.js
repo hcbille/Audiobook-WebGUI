@@ -4,14 +4,14 @@ const logger = require('./util/logging');
 module.exports = (app, credentials) => {
   app.post('/audiobook-dl', (req, res) => {
     const { credentials: selectedCredentials, url } = req.body;
-    const { username, password } = credentials[selectedCredentials];
+    const { creds } = credentials[selectedCredentials];
 
     // Validate URL
     if (!isValidURL(url)) {
       return res.send('Invalid URL');
     }
 
-    const command = `audiobook-dl --username ${username} --password ${password} ${url}`;
+    const command = `audiobook-dl ${creds} ${url} -o /audiobooks/`;
     
     exec(command, (error, stdout, stderr) => {
       if (error) {
