@@ -1,0 +1,20 @@
+{
+  "name": "Audiobook-WebGUI",
+  "version": "1.0.0",
+  "description": "audiobook-dl --username XXXXX --password YYYYY <url>",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hcbille/Audiobook-WebGUI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hcbille/Audiobook-WebGUI/issues"
+  },
+  "homepage": "https://github.com/hcbille/Audiobook-WebGUI#readme"
+}
