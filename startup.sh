@@ -1,3 +1,5 @@
+#!/bin/sh
+
 FILE=./cred/credentials.json
 if [ -f "$FILE" ]; then
     node main.js &
