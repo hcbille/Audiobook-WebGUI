@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const credentials = require('./credentials.json');
+const credentials = require('./cred/credentials.json');
 const logger = require('./util/logging');
 
 app.use(bodyParser.urlencoded({ extended: true }));
