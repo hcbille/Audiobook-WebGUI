@@ -32,7 +32,5 @@ RUN set -x && \
 
 WORKDIR /app
 RUN git clone https://github.com/hcbille/Audiobook-WebGUI.git .
-
 RUN npm install --production
-
-CMD [ "node", "main.js" ]
+ENTRYPOINT ["/startup.sh"]
